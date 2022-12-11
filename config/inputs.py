@@ -1,5 +1,6 @@
-import json
 import os
+
+import yaml
 
 
 class Data:
@@ -12,19 +13,16 @@ class Data:
 
 class FeatureEngineering:
     categorical_columns = ["winner", "team"]
-
-    # load magic features file
-    with open(os.path.join(Data.ROOT_DIR, "config", "magic_features.json")) as json_file:
-        feature_dict = json.load(json_file)
-
-    magic_features = [
-        {
-            "groupby_col": ["player_position_2"],
-            "feature_dict": feature_dict,
-            "feature_family_identifier": "_player_position_2",
-        }
-    ]
+    magic_features_path = os.path.join(Data.ROOT_DIR, "config", "magic_features.yaml")
+    # magic_features = [
+    #     {
+    #         "groupby_col": ["player_position_2"],
+    #         "feature_dict": feature_dict,
+    #         "feature_family_identifier": "_player_position_2",
+    #     }
+    # ]
 
 
 class Model:
     remove_columns = ["row_id"]
+    target_column = []
